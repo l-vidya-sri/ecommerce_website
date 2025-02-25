@@ -5,7 +5,7 @@ from flask_session import Session
 from stoken import encode,decode
 import mysql.connector
 import os
-import razorpay
+#import razorpay
 import re
 
 app=Flask(__name__)
@@ -14,7 +14,7 @@ app.config['SESSION_TYPE']='filesystem'    #Session data is stored in files on t
 Session(app)
 RAZORPAY_KEY_ID='rzp_test_BdYxoi5GaEITjc'
 RAZORPAY_KEY_SECRET='H0FUH2n4747ZSYBRyCn2D6rc'
-client=razorpay.Client(auth=(RAZORPAY_KEY_ID,RAZORPAY_KEY_SECRET))
+#client=razorpay.Client(auth=(RAZORPAY_KEY_ID,RAZORPAY_KEY_SECRET))
 #mydb=mysql.connector.connect(host='localhost',user='root',password='root',db='ecommi')
 user=os.environ.get('RDS_USERNAME')
 db=os.environ.get('RDS_DB_NAME')
@@ -489,7 +489,7 @@ def addcart(itemid,name,price,image,quantity,category):
         flash("Please login first!!!!")
         return redirect(url_for('userlogin'))
 
-@app.route("/pay/<itemid>/<name>/<float:price>",methods=['POST','GET'])
+'''@app.route("/pay/<itemid>/<name>/<float:price>",methods=['POST','GET'])
 def pay(itemid,name,price):
     try:
         print("price:",price)
@@ -535,7 +535,7 @@ def success():
         flash('Order placed successfully')
         return redirect(url_for('orders'))
     except razorpay.errors.SignatureVerificationError:
-        return 'Payment verification failed!',400
+        return 'Payment verification failed!',400'''
     
 @app.route("/orders")
 def orders():
