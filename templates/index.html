@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BUYROUTE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/c56a316195.js" crossorigin="anonymous"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Jersey+10&family=Merienda:wght@300..900&display=swap");
+
+    body {
+      background: linear-gradient(lightblue, gray);
+    }
+    .navbar {
+      background: linear-gradient(rgba(255, 192, 203, 0.582),
+          rgba(255, 255, 0, 0.582));
+      box-shadow: 1px 1px 5px rgb(255, 255, 255);
+    }
+
+    ul li a {
+      color: #000000 !important;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .logout {
+      color: #000000 !important;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 1%;
+    }
+
+    .banar {
+      margin-top: 4.5%;
+      background: url(https://4kwallpapers.com/images/wallpapers/color-burst-colorful-explosion-cgi-cosmic-black-background-3840x2160-6652.jpg);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+      height: 55vh;
+      width: 100vw;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .sec1 {
+      margin-top: 1%;
+    }
+
+    footer {
+      background-color: rgb(193, 189, 189);
+      padding: 1%;
+      text-align: center;
+      margin-top: 5%;
+    }
+
+    .search {
+      margin-left: 30%;
+    }
+
+    .btn1 {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .Bimage {
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      font-size: 50px;
+      background: linear-gradient(brown, white);
+      background-clip: content-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-family: "Merienda", cursive;
+      color: red;
+    }
+        .matter{
+            height: 50px;
+            min-height: 100px;
+            max-height: 100px;
+        }
+
+    h3 {
+      color: rgb(255, 255, 255);
+      font-size: 32px;
+      margin-top: -5px;
+      font-family: "Jersey 10", sans-serif;
+      text-shadow: 1px 1px 8px rgb(218, 17, 17);
+    }
+
+    .text,
+    .image {
+      /* margin-top: 5%; */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+    }
+
+    .fa-solid {
+      font-size: 40px;
+      color: #000000;
+      cursor: pointer;
+    }
+
+    .card {
+      height: 500px;
+    }
+
+    .card-img-top {
+      height: 250px;
+      /* width: 100px; */
+    }
+
+    span {
+      font-weight: bold;
+      color: red;
+    }
+  </style>
+</head>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<center style="color: bisque;">{{ message }}</center>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+      <a href="{{url_for('index')}}"><img src="/static/BUYROUTE.png" alt="Logo" class="logo" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('contactus')}}">Contact us</a>
+          </li>
+          {% if session.get('useremail') %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('viewcart')}}">View cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('orders')}}">My Orders</a>
+          </li>
+          {% endif %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Category
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{url_for('category',type='Home_appliances')}}">Home-Applications</a></li>
+              <li><a class="dropdown-item" href="{{url_for('category',type='Electronics')}}">Electronics</a></li>
+              <li><a class="dropdown-item" href="{{url_for('category',type='Fashion')}}">Fashion</a></li>
+              <li><a class="dropdown-item" href="{{url_for('category',type='Grocery')}}">Grocery</a></li>
+            </ul>
+          </li>
+          {% if session.get('useremail') %}
+          <li class="nav-item mt-2">
+            <a href="{{url_for('userlogout')}}" class="logout">Logout</a><br>
+          </li>
+          {% endif %}
+          {% if not session.get('useremail') %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              SignUp
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="{{url_for('admincreate')}}">Admin Signup</a>
+              </li>
+              <li><a class="dropdown-item" href="{{url_for('usercreate')}}">User SignUp</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Login
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="{{url_for('adminlogin')}}">Admin Login</a>
+              </li>
+              <li><a class="dropdown-item" href="{{url_for('userlogin')}}">User Login</a></li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+        {{session.get('useremail')}}&nbsp;
+        <form class="d-flex" method="post" action={{url_for('search')}}>
+          <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button> &nbsp;&nbsp;<a href="#"></a>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container-fluied">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+          <div class="banar">
+            <div class="text">
+              <h1>BUYROUTE</h1>
+              <h3>Welcome's To You</h3>
+            </div>
+            <div class="image"><img src="/static/imag.png" alt="Image" class="Bimage" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if item_data %}
+  <section class="sec1">
+    <div class="container-fluied">
+      <div class="row">
+        {% for i in item_data %}
+        <div class="col-12 col-sm-12 col-md-3 mb-5">
+          <div class="card" style="width: 20rem">
+            <a href="{{url_for('description',itemid=i[0])}}"><img src="/static/{{i[5]}}" class="card-img-top" alt="Faction" /></a>
+            <div class="card-body">
+              <div class="matter">
+              <a href="{{url_for('description',itemid=i[0])}}"><h5 class="card-title">{{i[0]}} </h5></a>
+              <h5 class="card-title">{{i[1]}} </h5>
+              </div>
+              <br> <span>Cost:- {{i[3]}}/-</span>
+              <form method="post" action="{{url_for('pay',itemid=i[0],name=i[1],price=i[3])}}">
+                <select name="qyt">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <br>
+                <button class="btn btn-success" style="float: right;">Buy NOW</button></form>
+              <div class="btn1">
+                <a href="{{url_for('addcart',itemid=i[0],name=i[1],price=i[3],image=i[5],quantity=i[2],category=i[4])}}"
+                  class="btn btn-warning" style="float: left;" >Add to cart</a>  
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <footer>
+    <h6>BUYROUTE @2023</h6>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

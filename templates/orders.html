@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c56a316195.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background: url(https://cdn.pixabay.com/photo/2022/09/21/17/02/blue-background-7470781_1280.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+        }
+        table{
+            border: 10px solid rgb(214, 202, 202) !important;
+        }
+    </style>
+</head>
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<center style="color: white;">{{ message }}</center>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock %}
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table mt-5" style="color: rgb(23, 21, 21);">
+                    <thead>
+                        <tr>
+                            <th scope="col">order_id</th>
+                            <th scope="col">Item_id</th>
+                            <th scope="col">Item_name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Get invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in user_orders %}
+                        <tr>
+                            <td>{{i[0]}}</td>
+                            <td>{{i[1]}}</td>
+                            <td>{{i[2]}}</td>
+                            <td>{{i[5]}}</td>
+                            <td>{{i[3]}}</td>
+                            <td>{{i[4]}}</td>
+                            <td><a href="#">Get invoice</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

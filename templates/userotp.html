@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 7% 0 0 20%;
+            background: url(https://img.freepik.com/free-photo/arrangement-black-friday-shopping-carts-with-copy-space_23-2148667047.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .mainbox {
+            width: 55vw;
+            height: 500px;
+            border: 1px solid rgb(255, 255, 255);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: 0.5s;
+        }
+
+        .mainbox:hover {
+            box-shadow: 1px 1px 15px rgb(255, 255, 255);
+        }
+
+        .side1 {
+            width: 30vw;
+            height: 500px;
+            border: 3px solid rgb(68, 255, 0);
+            border-bottom: transparent;
+            border-left: transparent;
+            border-top: transparent;
+            border-radius: 25px 100% 100% 25px;
+        }
+
+        .imgbox {
+            width: auto;
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .imgbox img {
+            margin-top: 15%;
+        }
+
+        form {
+            width: 25vw;
+            height: 500px;
+            padding: 30% 15% 30% 15%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            color: #00FFFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .form-control {
+            border: 1px solid rgb(255, 0, 0);
+            border-top: transparent;
+            border-radius: unset;
+            border-left: transparent;
+            border-right: transparent;
+            background: transparent;
+        }
+        input::placeholder {
+            color: rgb(251, 255, 0) !important;
+        }
+        input{
+            transition: background-color 0.3s ease;
+            color: rgb(255, 255, 0) !important;
+        }
+
+        input:focus {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            border: 1px solid rgb(255, 0, 0) !important;
+            border-top: transparent !important;
+            border-radius: unset;
+            border-left: transparent !important;
+            border-right: transparent !important;
+        }
+
+        input:valid {
+            background-color: transparent !important;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            background-color: transparent !important;
+            -webkit-text-fill-color: rgb(239, 228, 11) !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        .btn{
+            background-color: white;
+        }
+        @media (max-width:768px) {
+            body{
+                margin: 0;
+                padding: 0;
+                background-attachment: fixed;
+                display: flex;
+                justify-content: center;
+            }
+            .imgbox,.side1{
+                display: none;
+            }
+            form{
+                width: 100%;
+            }
+            .mainbox{
+                padding: 0;
+                margin: 0px;
+                height: 450px;
+                width: 500px;
+                margin-top: 10%;
+            }
+        }
+        @media (min-width:1025px) {
+            .imgbox img {
+            margin-top: 9vh;
+        }
+            
+        }
+    </style>
+</head>
+{% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center style="color: white;">{{ message }}</center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% endblock %}
+<body>
+    <div class="mainbox">
+        <div class="side1">
+            <div class="imgbox">
+                <img src="https://i.ibb.co/88Xjpt2/BUYROUTE.png" alt="BUYROUT logo" width="300px" height="300px">
+            </div>
+        </div>
+        <div class="side2">
+            <form action="#" method="post">
+                <div class="mb-3 row">
+                    <label for="otp" class="col-sm-2 col-form-label">OTP:- </label>
+                    <input type="text" class="form-control" id="otp" placeholder="Enter your OTP"
+                        name="otp" required>
+                </div>
+                <button class="btn btn-outline-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
